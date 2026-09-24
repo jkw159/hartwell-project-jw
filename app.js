@@ -151,7 +151,7 @@ function renderQueue(filter) {
       <button class="filter" data-filter="blocked" aria-pressed="${filter === "blocked"}">Blocked, below threshold (${blockedUnderThreshold.length})</button>
       <button class="filter" data-filter="all" aria-pressed="${filter === "all"}">All bids (${bids.length})</button>
     </div></div>
-    <section class="queue" aria-label="Bid attention queue"><div class="queue-head"><div>Bid</div><div>Why today</div><div>Stage and owner</div><div>Age</div><div>Value</div><div>Recommended next step</div></div>${filtered.length ? filtered.sort((a,b) => b.totalDays - a.totalDays || b.stageDays - a.stageDays || b.value - a.value).map(row).join("") : `<div class="empty">No bids match this view.</div>`}</section>
+    <section class="queue" aria-label="Bid attention queue"><div class="queue-head"><div>Bid</div><div>Why today</div><div>Stage and owner</div><div>Age</div><div>Value</div><div>Recommended next step</div></div>${filtered.length ? filtered.sort((a,b) => b.totalDays - a.totalDays || b.stageDays - a.stageDays || b.value - a.value).map(bid => row(bid)).join("") : `<div class="empty">No bids match this view.</div>`}</section>
     <section class="detail" id="detail" hidden></section>
   </section>`);
   document.getElementById("back").addEventListener("click", renderLanding);
